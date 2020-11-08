@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'se3316-aduffy22-lab4';
+  title: string = 'Western Schedule Creator';
 }

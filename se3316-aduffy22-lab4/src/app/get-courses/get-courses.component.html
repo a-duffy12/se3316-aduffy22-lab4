@@ -1,0 +1,10 @@
+<h3>Search for courses</h3>
+<input type="text" placeholder="Subject Code" [(ngModel)]="subject">
+<input type="text" placeholder="Course Code" [(ngModel)]="catalog">
+<input type="text" placeholder="Component" [(ngModel)]="component">
+<button (click)="display()">Search</button>
+
+<div *ngIf="data1">output for Q1</div>
+<div *ngIf="data2">output for Q2</div>
+<div *ngIf="data3a">output for Q3a</div>
+<div *ngIf="data3b">output for Q3b</div>
