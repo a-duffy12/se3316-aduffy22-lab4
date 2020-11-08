@@ -4,7 +4,52 @@
 <input type="text" placeholder="Component" [(ngModel)]="component">
 <button (click)="display()">Search</button>
 
-<div *ngIf="data1">output for Q1</div>
-<div *ngIf="data2">output for Q2</div>
-<div *ngIf="data3a">output for Q3a</div>
-<div *ngIf="data3b">output for Q3b</div>
+<div *ngIf="error">
+  <p>{{error}}</p>
+</div>
+<div *ngIf="data1">output for Q1
+  <p>
+    Displaying all courses
+  </p>
+  <ul>
+    <li *ngFor="let d of data1">
+      <span>{{d.subject}}: {{d.className}}</span>
+    </li>
+  </ul>
+</div>
+<div *ngIf="data2">output for Q2
+  <p>
+    Displaying courses with subject: {{subject}}
+  </p>
+  <ul>
+    <li *ngFor="let d of data2">
+      <span>{{d.catalog}}</span>
+    </li>
+  </ul>
+</div>
+<div *ngIf="data3a">output for Q3a
+  <p>
+    Displaying courses with subject: {{subject}} and course code: {{catalog}}
+  </p>
+  <ul>
+    <li *ngFor="let d of data3a">
+      <span>Class number: {{d.number}}, Component: {{d.component}}</span>
+      <ul>
+        <li *ngFor="let t of d.times">
+          <span>Day: {{t.day}}, {{t.start}} - {{t.end}}</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<div *ngIf="data3b">output for Q3b
+  <p>
+    Displaying courses with subject: {{subject}}, course code: {{catalog}}, and component: {{component}}
+  </p>
+  <span>Class number: {{d.number}}</span>
+  <ul>
+    <li *ngFor="let t of d.times">
+      <span>Day: {{t.day}}, {{t.start}} - {{t.end}}</span>
+    </li>
+  </ul>
+</div>
