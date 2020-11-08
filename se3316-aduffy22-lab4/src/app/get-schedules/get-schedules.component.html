@@ -1,0 +1,30 @@
+<h3>Search for Schedules</h3>
+<input type="text" placeholder="Schedule Name" [(ngModel)]="name">
+<button (click)="displaySchedule()">Search</button>
+<button (click)="displayAll()">Show All</button>
+
+<div *ngIf="error">
+  <p>{{error}}</p>
+</div>
+
+<div *ngIf="data6">
+  <p>
+    Displaying schedule with name: {{name}}
+  </p>
+  <ul>
+    <li *ngFor="let d of data6">
+      <span>Subject: {{d.subject_code}}, Course: {{d.course_code}}</span>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="data8">
+  <p>
+    Displaying all schedules
+  </p>
+  <ul>
+    <li *ngFor="let d of data">
+      <span>Schedule {{d.name}} contains {{d.course_count}} courses</span>
+    </li>
+  </ul>
+</div>
