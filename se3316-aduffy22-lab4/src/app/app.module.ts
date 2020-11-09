@@ -7,12 +7,14 @@ import { GetCoursesComponent } from './get-courses/get-courses.component';
 import { GetSchedulesComponent } from './get-schedules/get-schedules.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { DeleteSchedulesComponent } from './delete-schedules/delete-schedules.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GetCoursesComponent,
-    GetSchedulesComponent
+    GetSchedulesComponent,
+    DeleteSchedulesComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@ export class GetSchedulesComponent implements OnInit {
   // member variable for search field
   name: string = "";
 
-  // member variables for search output
+  // member variables to hold output
   data6: any;
   data8: any;
   error: string = "";
@@ -22,7 +22,7 @@ export class GetSchedulesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // method to run the get request for a particular schedule
+  // method to run the get request for a particular schedule Q6
   displaySchedule()
   {
     this.reset(); // reset all member variables
@@ -37,20 +37,21 @@ export class GetSchedulesComponent implements OnInit {
     }
     else
     {
-      this.error = "Invalid input in search fields!";
+      this.error = "Invalid input in name field!";
       console.log("Invalid input!");
     }
   }
 
-  // method to run the get request for all schedules
+  // method to run the get request for all schedules Q8
   displayAll()
   {
-    this.reset(); // reset all memner variables
+    this.reset(); // reset all member variables
 
+    // request to back end
     this.http.get("/api/schedules").subscribe((data:any) => {
       this.data8 = data; // get data object
     })
-    console.log("Searched all schedules")
+    console.log("Searched all schedules");
   }
 
   // method to reset all member varaibles used in *ngIf statements

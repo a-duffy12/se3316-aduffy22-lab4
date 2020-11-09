@@ -1,0 +1,16 @@
+<h3>Delete Courses</h3>
+<input type="text" placeholder="Schedule Name" [(ngModel)]="name">
+<button (click)="deleteSchedule()">Delete</button>
+<button (click)="deleteAll()">Delete All</button>
+
+<div *ngIf="error">
+  <p>{{error}}</p>
+</div>
+
+<div *ngIf="data7">
+  <p>{{data7}}</p>
+</div>
+
+<div *ngIf="data9">
+  <p>{{data9}]</p>
+</div>
