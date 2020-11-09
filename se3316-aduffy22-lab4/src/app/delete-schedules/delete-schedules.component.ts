@@ -29,7 +29,7 @@ export class DeleteSchedulesComponent implements OnInit {
     if (this.name != "") // Q7
     {
       // request to back end
-      this.http.delete(`/api/schedules/${this.name}`).subscribe((data:string) => {
+      this.http.delete(`http://localhost:3000/api/schedules/${this.name}`).subscribe((data:string) => {
         this.data7 = data; // get response as string
       })
       console.log(`Deleted schedule with name: ${this.name}`);
@@ -47,7 +47,7 @@ export class DeleteSchedulesComponent implements OnInit {
     this.reset(); // reset all member variables
 
     // request to back end
-    this.http.delete("/api/schedules").subscribe((data:string) => {
+    this.http.delete("http://localhost:3000/api/schedules").subscribe((data:string) => {
       this.data9 = data; // get response as string
     })
     console.log("Deleted all schedules");

@@ -1,5 +1,6 @@
 const express = require("express"); // get express 
 const fs = require("fs"); // get fs module
+const cors = require("cors"); // get cors module
 const j1data = require("./data/Lab3-timetable-data.json"); // json data for courses
 const j2data = require("./data/Lab3-schedule-data.json"); // json data for schedules
 const sfile = "./data/Lab3-schedule-data.json"; // file holding json data for scehdules
@@ -9,17 +10,24 @@ const crouter = express.Router(); // create router obejct for courses
 const srouter = express.Router(); // create router object for schedules
 const cdata = JSON.parse(JSON.stringify(j1data)); // parse json object holding the courses
 
+const corsOptions = { // options for cors
+    origin: "http://localhost:4200",
+    optionsSuccessStatus: 200
+}
+
 crouter.use(express.json()); // allows express to parse json objects (middleware)
 srouter.use(express.json()); // allows express to parse json objects (middleware)
 
 app.use("/", express.static("static")); // folder where client-side code is stored
+
+app.use(cors(corsOptions)); // middleware to allow CORS
 
 app.use((req, res, next) => { // middleware function to do console logs
     console.log(`${req.method} request for ${req.url}`); // print to console
     next(); // continue processeing
 });
 
-crouter.get("/", (req, res) => { // get all subjects and course codes Q1
+crouter.get("/", (req, res) => { // get all subjects and course codes Q1np
 
     let courses = []; // empty array variable to return
 

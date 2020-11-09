@@ -50,10 +50,14 @@
   <p>
     Displaying courses with subject: {{subject}}, course code: {{catalog}}, and component: {{component}}
   </p>
-  <span>Class number: {{d.number}}</span>
   <ul>
-    <li *ngFor="let t of d.times">
-      <span>Day: {{t.day}}, {{t.start}} - {{t.end}}</span>
+    <li *ngFor="let d of data3b">
+      <span>Class number: {{d.number}}</span>
+      <ul>
+        <li *ngFor="let t of d.times">
+          <span>Day: {{t.day}}, {{t.start}} - {{t.end}}</span>
+        </li>
+      </ul>
     </li>
   </ul>
 </div>

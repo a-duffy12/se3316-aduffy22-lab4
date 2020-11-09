@@ -30,7 +30,7 @@ export class GetSchedulesComponent implements OnInit {
     if (this.name != "") // Q6
     {
       //request to back end
-      this.http.get(`/api/schedules/${this.name}`).subscribe((data:any) => {
+      this.http.get(`http://localhost:3000/api/schedules/${this.name}`).subscribe((data:any) => {
         this.data6 = data; // get data object
       })
       console.log(`Searched for schedule with name: ${this.name}`);
@@ -48,7 +48,7 @@ export class GetSchedulesComponent implements OnInit {
     this.reset(); // reset all member variables
 
     // request to back end
-    this.http.get("/api/schedules").subscribe((data:any) => {
+    this.http.get("http://localhost:3000/api/schedules").subscribe((data:any) => {
       this.data8 = data; // get data object
     })
     console.log("Searched all schedules");
