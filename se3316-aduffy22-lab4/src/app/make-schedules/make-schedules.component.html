@@ -3,11 +3,11 @@
 <input type="number" [(ngModel)]="count">
 <button (click)="buildSchedule()">Build</button>
 
-<div *ngIf="(build == true) && name && (count >= 0) && (count <= 15) ">
+<div *ngIf="(build == true) && name && (count >= 0) && (count <= 15)">
   <p>Enter subject and course code pairs</p>
-  <ul>
+  <ul class="list">
     <li *ngFor="let item of [].constructor(count); let i = index">
-      <input type="text" placeholder="Subejct" [(ngModel)]="subjectCodes[i]">
+      <input type="text" placeholder="Subject" [(ngModel)]="subjectCodes[i]">
       <input type="text" placeholder="Course Code" [(ngModel)]="courseCodes[i]">
     </li>
   </ul>

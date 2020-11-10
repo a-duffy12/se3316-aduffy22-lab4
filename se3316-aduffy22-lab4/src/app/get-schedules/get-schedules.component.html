@@ -11,7 +11,7 @@
   <p>
     Displaying schedule with name: {{name}}
   </p>
-  <ul>
+  <ul class="list">
     <li *ngFor="let d of data6">
       <span>Subject: {{d.subject_code}}, Course: {{d.course_code}}</span>
     </li>
@@ -22,7 +22,7 @@
   <p>
     Displaying all schedules
   </p>
-  <ul>
+  <ul class="list">
     <li *ngFor="let d of data8">
       <span>Schedule {{d.name}} contains {{d.course_count}} course(s)</span>
     </li>
@@ -33,8 +33,8 @@
 
 <div *ngIf="time">
   <p>Timetable data for schedule: {{name}}</p>
-  <ul>
-    <li *ngFor="let b of dataBonus">
+  <ul class="list">
+    <li *ngFor="let b of dataBonus" class="list-li">
       <ul>
         <span>Timetable data for {{subjects[dataBonus.indexOf(b)]}}: {{courses[dataBonus.indexOf(b)]}}</span>
         <li *ngFor="let d of b">

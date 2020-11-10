@@ -12,7 +12,7 @@
   <p>
     Displaying all courses
   </p>
-  <ul>
+  <ul class="list">
     <li *ngFor="let d of data1">
       <span>{{d.subject}}: {{d.className}}</span>
     </li>
@@ -23,7 +23,7 @@
   <p>
     Displaying courses with subject: {{subject}}
   </p>
-  <ul>
+  <ul class="list">
     <li *ngFor="let d of data2">
       <span>{{d.catalog}}</span>
     </li>
@@ -34,8 +34,8 @@
   <p>
     Displaying courses with subject: {{subject}} and course code: {{catalog}}
   </p>
-  <ul>
-    <li *ngFor="let d of data3a">
+  <ul class="list">
+    <li *ngFor="let d of data3a" class="list-li">
       <span>Class number: {{d.number}}, Component: {{d.component}}</span>
       <ul>
         <li *ngFor="let t of d.times">
@@ -50,8 +50,8 @@
   <p>
     Displaying courses with subject: {{subject}}, course code: {{catalog}}, and component: {{component}}
   </p>
-  <ul>
-    <li *ngFor="let d of data3b">
+  <ul class="list">
+    <li *ngFor="let d of data3b" class="list-li">
       <span>Class number: {{d.number}}</span>
       <ul>
         <li *ngFor="let t of d.times">

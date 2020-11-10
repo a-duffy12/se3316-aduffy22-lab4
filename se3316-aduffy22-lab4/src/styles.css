@@ -19,6 +19,9 @@ input {
   color: black;
   font-family: Georgia;
   background-color: #eeeeee;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
   margin: 0px 10px 0px 10px;
 }
 
@@ -30,11 +33,22 @@ button {
   color: black;
   font-family: Georgia;
   background-color: #eeeeee;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
   margin: 0px 10px 0px 10px;
 }
 
 button:hover {
   background-color: #cccccc;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  font-size: 90%;
 }
 
 * {

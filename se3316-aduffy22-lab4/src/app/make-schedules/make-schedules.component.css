@@ -1,0 +1,13 @@
+li {
+  margin: 5px;
+}
+
+p {
+  text-align: center;
+}
+
+.list {
+  text-align: center;
+  column-count: 3;
+  column-rule: 3px solid #dddddd;
+}

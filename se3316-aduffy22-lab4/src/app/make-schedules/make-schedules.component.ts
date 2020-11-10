@@ -32,6 +32,7 @@ export class MakeSchedulesComponent implements OnInit {
     if ((this.name != "") && this.val.validate(this.name, 100) && this.val.validateNum(this.count, 0, 15))
     {
       this.build = true;
+      this.error = "";
     }
     else if (this.val.validateNum(this.count, 0, 15))
     {
