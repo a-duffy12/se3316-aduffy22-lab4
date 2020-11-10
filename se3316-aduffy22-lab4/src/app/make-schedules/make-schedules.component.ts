@@ -66,8 +66,8 @@ export class MakeSchedulesComponent implements OnInit {
       for (let i = 0; i < this.count; i++) // for the number of courses in the schedule
       {
         let temp: Sclass = { // create empty subject code + course code pair
-          subject_code: this.subjectCodes[i],
-          course_code: this.courseCodes[i]
+          subject_code: this.subjectCodes[i].toUpperCase(),
+          course_code: this.courseCodes[i].toUpperCase()
         };
 
         obj.classes[i] = temp; // add this subject code + course code pair to the list of classes
@@ -111,8 +111,8 @@ export class MakeSchedulesComponent implements OnInit {
       for (let i = 0; i < this.count; i++) // for the number of courses in the schedule
       {
         let temp: Sclass = { // create empty subject code + course code pair
-          subject_code: this.subjectCodes[i],
-          course_code: this.courseCodes[i]
+          subject_code: this.subjectCodes[i].toUpperCase(),
+          course_code: this.courseCodes[i].toUpperCase()
         };
 
         obj.classes[i] = temp; // add this subject code + course code pair to the list of classes

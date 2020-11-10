@@ -130,7 +130,7 @@ crouter.get("/:subject/:catalog", (req, res) => { // get the timetable entry for
     }
 });  
 
-crouter.get("/:subject/:catalog/:component", (req, res) => { // get the timetable entry for a subjcet and catalog Q3b
+crouter.get("/:subject/:catalog/:component", (req, res) => { // get the timetable entry for a subject and catalog Q3b
 
     if (sanitizeInput(req.params.subject, 9) && sanitizeInput(req.params.catalog, 6) && sanitizeInput(req.params.component, 4))
     {

@@ -31,6 +31,11 @@ export class GetCoursesComponent implements OnInit {
   {
     this.reset(); // reset all member variables
 
+    // send all input to upper case
+    this.subject = this.subject.toUpperCase();
+    this.catalog = this.catalog.toUpperCase();
+    this.component = this.component.toUpperCase();
+
     if ((this.subject == "") && (this.catalog == "") && (this.component == "")) // Q1
     {
       // request to back end
