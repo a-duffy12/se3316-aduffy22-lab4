@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DeleteSchedulesComponent } from './delete-schedules/delete-schedules.component';
 import { MakeSchedulesComponent } from './make-schedules/make-schedules.component';
+import { Validator } from './validator.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { MakeSchedulesComponent } from './make-schedules/make-schedules.componen
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [Validator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

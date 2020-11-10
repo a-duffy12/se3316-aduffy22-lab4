@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Validator } from '../validator.service';
 
 @Component({
   selector: 'get-courses',
@@ -20,7 +21,7 @@ export class GetCoursesComponent implements OnInit {
   data3b: any;
   error: string = "";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private val: Validator) { }
 
   ngOnInit(): void {
   }
@@ -38,7 +39,7 @@ export class GetCoursesComponent implements OnInit {
       })
       console.log("Searched all courses");
     }
-    else if ((this.subject != "") && (this.catalog == "") && (this.component == "")) // Q2
+    else if ((this.subject != "") && (this.catalog == "") && (this.component == "") && this.val.validate(this.subject, 8)) // Q2
     {
       // request to back end
       this.http.get(`http://localhost:3000/api/courses/${this.subject}`).subscribe((data:any) => {
@@ -46,7 +47,7 @@ export class GetCoursesComponent implements OnInit {
       })
       console.log(`Search for courses with subject: ${this.subject}`);
     }
-    else if ((this.subject != "") && (this.catalog != "") && (this.component == "")) // Q3a
+    else if ((this.subject != "") && (this.catalog != "") && (this.component == "") && this.val.validate(this.subject, 8) && this.val.validate(this.catalog, 5)) // Q3a
     {
       // request to back end
       this.http.get(`http://localhost:3000/api/courses/${this.subject}/${this.catalog}`).subscribe((data:any) => {
@@ -54,7 +55,7 @@ export class GetCoursesComponent implements OnInit {
       })
       console.log(`Search for courses with subject: ${this.subject} and catalog number: ${this.catalog}`);
     }
-    else if ((this.subject != "") && (this.catalog != "") && (this.component != "")) // Q3b
+    else if ((this.subject != "") && (this.catalog != "") && (this.component != "") && this.val.validate(this.subject, 8) && this.val.validate(this.catalog, 5) && this.val.validate(this.component, 3)) // Q3b
     {
       // request to back end
       this.http.get(`http://localhost:3000/api/courses/${this.subject}/${this.catalog}/${this.component}`).subscribe((data:any) => {
