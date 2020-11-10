@@ -28,3 +28,24 @@
     </li>
   </ul>
 </div>
+
+<button (click)="showTimetable()">Show Timetable</button>
+
+<div *ngIf="time">
+  <p>Timetable data for schedule: {{name}}</p>
+  <ul>
+    <li *ngFor="let b of dataBonus">
+      <ul>
+        <span>Timetable data for {{subjects[dataBonus.indexOf(b)]}}: {{courses[dataBonus.indexOf(b)]}}</span>
+        <li *ngFor="let d of b">
+          <span>Class number: {{d.number}}, Component: {{d.component}}</span>
+          <ul>
+            <li *ngFor="let t of d.times">
+              <span>Day: {{t.day}}, {{t.start}} - {{t.end}}</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

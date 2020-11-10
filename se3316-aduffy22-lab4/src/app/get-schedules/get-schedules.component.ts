@@ -11,10 +11,14 @@ export class GetSchedulesComponent implements OnInit {
 
   // member variable for search field
   name: string = "";
+  time: boolean = false;
 
   // member variables to hold output
   data6: any;
   data8: any;
+  subjects = new Array();
+  courses = new Array();
+  dataBonus = new Array();
   error: string = "";
 
   constructor(private http: HttpClient, private val: Validator) { }
@@ -54,11 +58,43 @@ export class GetSchedulesComponent implements OnInit {
     console.log("Searched all schedules");
   }
 
+  // method to display timetable data for the given schedule
+  showTimetable()
+  {
+    this.resetArrays(); // reset arrays used to build timetables
+
+    if (this.data6) // if there is data returned for a given schedule
+    {
+      for (let t in this.data6)
+      {
+        this.subjects.push(this.data6[t].subject_code);
+        this.courses.push(this.data6[t].course_code);
+        this.http.get(`http://localhost:3000/api/courses/${this.subjects[t]}/${this.courses[t]}`).subscribe((data:any) => {
+          this.dataBonus.push(data); // add data object to this array
+        })
+      }
+      this.time = true; // allow this timetable data to be displayed
+    }
+    else
+    {
+      this.error = "Search for a schedule before showing its timetable data!";
+    }
+  }
+
   // method to reset all member varaibles used in *ngIf statements
   reset()
   {
+    this.time = false;
     this.data6 = undefined;
     this.data8 = undefined;
     this.error = "";
+  }
+
+  // method to reset the arrays used to get timetable data
+  resetArrays()
+  {
+    this.subjects.length = 0;
+    this.courses.length = 0;
+    this.dataBonus.length = 0;
   }
 }
