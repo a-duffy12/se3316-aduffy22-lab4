@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Validator } from '../validator.service';
 
 @Component({
   selector: 'make-schedules',
@@ -21,7 +22,7 @@ export class MakeSchedulesComponent implements OnInit {
   data5: any;
   error: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private val: Validator) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +30,25 @@ export class MakeSchedulesComponent implements OnInit {
   // method to build the subject + catalog pairs in a schedule
   buildSchedule()
   {
-    this.build = true;
+    if ((this.name != "") && this.val.validate(this.name, 100) && this.val.validateNum(this.count, 0, 15))
+    {
+      this.build = true;
+    }
+    else if (this.val.validateNum(this.count, 0, 15))
+    {
+      this.error = "Invalid input in the name field!";
+      console.log("Invalid input!");
+    }
+    else if ((this.name != "") && this.val.validate(this.name, 100))
+    {
+      this.error = "Invalid input in the number of courses field!";
+      console.log("Invalid input!");
+    }
+    else
+    {
+      this.error = "Invalid input in the name field and the number of courses field!";
+      console.log("Invalid input!");
+    }
   }
 
   // method to create the schedule with the entered data Q4
@@ -37,7 +56,7 @@ export class MakeSchedulesComponent implements OnInit {
   {
     this.reset(); // reset all member variables
 
-    if (this.name != "")
+    if ((this.name != "") && this.val.validate(this.name, 100) && this.val.validateNum(this.count, 0, 15))
     {
       // create empty schedule object
       let obj: Sched = {
@@ -60,9 +79,19 @@ export class MakeSchedulesComponent implements OnInit {
       })
       console.log(`Created schedule with name: ${this.name}`);
     }
-    else
+    else if (this.val.validateNum(this.count, 0, 15))
     {
       this.error = "Invalid input in the name field!";
+      console.log("Invalid input!");
+    }
+    else if ((this.name != "") && this.val.validate(this.name, 100))
+    {
+      this.error = "Invalid input in the number of courses field!";
+      console.log("Invalid input!");
+    }
+    else
+    {
+      this.error = "Invalid input int he name field and the number of courses field!";
       console.log("Invalid input!");
     }
   }
@@ -72,7 +101,7 @@ export class MakeSchedulesComponent implements OnInit {
   {
     this.reset(); // reset all member variables
 
-    if (this.name != "")
+    if ((this.name != "") && this.val.validate(this.name, 100) && this.val.validateNum(this.count, 0, 15))
     {
       // create empty schedule object
       let obj: Sched = {
@@ -95,9 +124,19 @@ export class MakeSchedulesComponent implements OnInit {
       })
       console.log(`Created schedule with name: ${this.name}`);
     }
-    else
+    else if (this.val.validateNum(this.count, 0, 15))
     {
       this.error = "Invalid input in the name field!";
+      console.log("Invalid input!");
+    }
+    else if ((this.name != "") && this.val.validate(this.name, 100))
+    {
+      this.error = "Invalid input in the number of courses field!";
+      console.log("Invalid input!");
+    }
+    else
+    {
+      this.error = "Invalid input int he name field and the number of courses field!";
       console.log("Invalid input!");
     }
   }

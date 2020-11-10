@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Subscriber } from 'rxjs';
+import { Validator } from '../validator.service';
 
 @Component({
   selector: 'get-schedules',
@@ -17,7 +17,7 @@ export class GetSchedulesComponent implements OnInit {
   data8: any;
   error: string = "";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private val: Validator) { }
 
   ngOnInit(): void {
   }
@@ -27,7 +27,7 @@ export class GetSchedulesComponent implements OnInit {
   {
     this.reset(); // reset all member variables
 
-    if (this.name != "") // Q6
+    if ((this.name != "") && this.val.validate(this.name, 100)) // Q6
     {
       //request to back end
       this.http.get(`http://localhost:3000/api/schedules/${this.name}`).subscribe((data:any) => {

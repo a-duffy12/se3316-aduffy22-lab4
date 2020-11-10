@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Validator } from '../validator.service';
 
 @Component({
   selector: 'delete-schedules',
   templateUrl: './delete-schedules.component.html',
   styleUrls: ['./delete-schedules.component.css']
 })
-export class DeleteSchedulesComponent implements OnInit {
+export class DeleteSchedulesComponent {
 
   // member varaible for search field
   name: string = "";
@@ -16,17 +17,14 @@ export class DeleteSchedulesComponent implements OnInit {
   data9: string = "";
   error: string = "";
 
-  constructor(private http: HttpClient) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private http: HttpClient, private val: Validator) { }
 
   // method to delete a particular schedule Q7
   deleteSchedule()
   {
     this.reset(); // reset all member variables
 
-    if (this.name != "") // Q7
+    if ((this.name != "") && this.val.validate(this.name, 100)) // Q7
     {
       // request to back end
       this.http.delete(`http://localhost:3000/api/schedules/${this.name}`).subscribe((data:string) => {
