@@ -73,7 +73,16 @@ export class GetSchedulesComponent implements OnInit {
           this.dataBonus.push(data); // add data object to this array
         })
       }
-      this.time = true; // allow this timetable data to be displayed
+
+      if (this.dataBonus.length == this.data6.length) // all courses in the schedule are legitimate
+      {
+        this.time = true; // allow this timetable data to be displayed
+      }
+      else // schedule contains fake course(s)
+      {
+        this.data6 = undefined;
+        this.error = `Schedule "${this.name}" contains courses which do not exist, please update schedule with a corrected version!`;
+      }
     }
     else
     {
