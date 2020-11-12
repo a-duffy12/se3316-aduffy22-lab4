@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Validator {
 
-  public validate(inp, len)
+  public validate(inp: string, len: number)
   {
-    if ((typeof inp !== "string") || (inp.length == 0) || (inp.length > len) || (inp.includes("<")) || (inp.includes(">")) || (inp.includes(".")) || (inp.includes("/")) || (inp.includes("(")) || (inp.includes(")")) || (inp.includes("*")) || (inp.includes("'"))  || (inp.includes("_")) || (inp.includes("=")) || (inp.includes("$")) || (inp.includes("?")) || (inp.includes("!")) || (inp.includes("%")) || (inp.includes("\"")) || (inp.includes("`")) || (inp.includes("+")) || (inp.includes("&")))
+    if ((typeof inp !== "string") || (inp.length == 0) || (inp.length > len) || (inp.includes("<")) || (inp.includes(">")) || (inp.includes("^")) || (inp.includes(".")) || (inp.includes("/")) || (inp.includes("(")) || (inp.includes(")")) || (inp.includes("*")) || (inp.includes("'"))  || (inp.includes("_")) || (inp.includes("=")) || (inp.includes("$")) || (inp.includes("?")) || (inp.includes("!")) || (inp.includes("%")) || (inp.includes("\"")) || (inp.includes("`")) || (inp.includes("+")) || (inp.includes("&")))
     {
       return false;
     }
@@ -16,7 +16,7 @@ export class Validator {
   }
 
   // method to validate numerical input
-  public validateNum(inp, min, max)
+  public validateNum(inp: number, min: number, max: number)
   {
     if ((typeof inp === "number") && (inp >= min) && (inp <= max))
     {
