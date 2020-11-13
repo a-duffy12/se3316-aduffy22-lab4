@@ -33,6 +33,7 @@
 
 <div *ngIf="time">
   <p>Timetable data for schedule: {{name}}</p>
+  <p>If a class is missing, then the class does not exist, and you must correct your schedule!</p>
   <ul class="list">
     <li *ngFor="let b of dataBonus" class="list-li">
       <ul>

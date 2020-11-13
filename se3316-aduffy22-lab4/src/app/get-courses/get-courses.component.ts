@@ -39,7 +39,7 @@ export class GetCoursesComponent implements OnInit {
     if ((this.subject == "") && (this.catalog == "") && (this.component == "")) // Q1
     {
       // request to back end
-      this.http.get("http://localhost:3000/api/courses").subscribe((data:any) => {
+      this.http.get("http://34.227.122.126:3000/api/courses").subscribe((data:any) => {
         this.data1 = data; // get data object
       })
       console.log("Searched all courses");
@@ -47,7 +47,7 @@ export class GetCoursesComponent implements OnInit {
     else if ((this.subject != "") && (this.catalog == "") && (this.component == "") && this.val.validate(this.subject, 8)) // Q2
     {
       // request to back end
-      this.http.get(`http://localhost:3000/api/courses/${this.subject}`).subscribe((data:any) => {
+      this.http.get(`http://34.227.122.126:3000/api/courses/${this.subject}`).subscribe((data:any) => {
         this.data2 = data; // get data object
       })
       console.log(`Search for courses with subject: ${this.subject}`);
@@ -55,7 +55,7 @@ export class GetCoursesComponent implements OnInit {
     else if ((this.subject != "") && (this.catalog != "") && (this.component == "") && this.val.validate(this.subject, 8) && this.val.validate(this.catalog, 5)) // Q3a
     {
       // request to back end
-      this.http.get(`http://localhost:3000/api/courses/${this.subject}/${this.catalog}`).subscribe((data:any) => {
+      this.http.get(`http://34.227.122.126:3000/api/courses/${this.subject}/${this.catalog}`).subscribe((data:any) => {
         this.data3a = data; // get data object
       })
       console.log(`Search for courses with subject: ${this.subject} and catalog number: ${this.catalog}`);
@@ -63,7 +63,7 @@ export class GetCoursesComponent implements OnInit {
     else if ((this.subject != "") && (this.catalog != "") && (this.component != "") && this.val.validate(this.subject, 8) && this.val.validate(this.catalog, 5) && this.val.validate(this.component, 3)) // Q3b
     {
       // request to back end
-      this.http.get(`http://localhost:3000/api/courses/${this.subject}/${this.catalog}/${this.component}`).subscribe((data:any) => {
+      this.http.get(`http://34.227.122.126:3000/api/courses/${this.subject}/${this.catalog}/${this.component}`).subscribe((data:any) => {
         this.data3b = data; // get data object
       })
       console.log(`Search for courses with subject: ${this.subject}, catalog number: ${this.catalog}, and component: ${this.component}`);

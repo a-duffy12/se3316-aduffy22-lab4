@@ -11,7 +11,7 @@ const srouter = express.Router(); // create router object for schedules
 const cdata = JSON.parse(JSON.stringify(j1data)); // parse json object holding the courses
 
 const corsOptions = { // options for cors
-    origin: "http://localhost:4200",
+    origin: "http://34.227.122.126:4200",
     optionsSuccessStatus: 200
 }
 
@@ -400,7 +400,7 @@ function setScheduleData(array, file)
 function sanitizeInput(input, l) 
 { 
     // limit is 1000 characters, as test cases with 15 courses (max amount) were always in the range of 700-800 characters
-    if (String(input).includes("<") || String(input).includes(">") || String(input).includes(".") || String(input).includes("/") || String(input).includes("(") || String(input).includes(")") || String(input).includes("*") || String(input).includes("'") || String(input).includes("_") || String(input).includes("=") || String(input).includes("$") || String(input).includes("?") || String(input).includes("!") || String(input).includes("%") || String(input).includes("\"") || String(input).includes("`") || String(input).includes("+") || String(input).includes("|") || String(input).includes("&") || String(input).length >= l || String(input).length < 1)
+    if (String(input).includes("<") || String(input).includes(">") || String(input).includes("^") || String(input).includes(".") || String(input).includes("/") || String(input).includes("(") || String(input).includes(")") || String(input).includes("*") || String(input).includes("'") || String(input).includes("_") || String(input).includes("=") || String(input).includes("$") || String(input).includes("?") || String(input).includes("!") || String(input).includes("%") || String(input).includes("\"") || String(input).includes("`") || String(input).includes("+") || String(input).includes("|") || String(input).includes("&") || String(input).length >= l || String(input).length < 1)
     {
         return false;
     }

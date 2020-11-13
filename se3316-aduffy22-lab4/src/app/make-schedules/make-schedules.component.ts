@@ -74,7 +74,7 @@ export class MakeSchedulesComponent implements OnInit {
       }
 
       // send request with schedule "obj" in the body and "name" in the URL
-      this.http.post(`http://localhost:3000/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data: string) => {
+      this.http.post(`http://34.227.122.126:3000/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data: string) => {
         this.data4 = data; // get response as string
       })
       console.log(`Created schedule with name: ${this.name}`);
@@ -119,7 +119,7 @@ export class MakeSchedulesComponent implements OnInit {
       }
 
       // send request with schedule "obj" in the body and "name" in the URL
-      this.http.put(`http://localhost:3000/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data: string) => {
+      this.http.put(`http://34.227.122.126:3000/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data: string) => {
         this.data4 = data; // get response as string
       })
       console.log(`Created schedule with name: ${this.name}`);

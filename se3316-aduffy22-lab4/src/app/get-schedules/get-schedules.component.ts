@@ -34,7 +34,7 @@ export class GetSchedulesComponent implements OnInit {
     if ((this.name != "") && this.val.validate(this.name, 100)) // Q6
     {
       //request to back end
-      this.http.get(`http://localhost:3000/api/schedules/${this.name}`).subscribe((data:any) => {
+      this.http.get(`http://34.227.122.126:3000/api/schedules/${this.name}`).subscribe((data:any) => {
         this.data6 = data; // get data object
       })
       console.log(`Searched for schedule with name: ${this.name}`);
@@ -52,7 +52,7 @@ export class GetSchedulesComponent implements OnInit {
     this.reset(); // reset all member variables
 
     // request to back end
-    this.http.get("http://localhost:3000/api/schedules").subscribe((data:any) => {
+    this.http.get("http://34.227.122.126:3000/api/schedules").subscribe((data:any) => {
       this.data8 = data; // get data object
     })
     console.log("Searched all schedules");
@@ -69,20 +69,12 @@ export class GetSchedulesComponent implements OnInit {
       {
         this.subjects.push(this.data6[t].subject_code);
         this.courses.push(this.data6[t].course_code);
-        this.http.get(`http://localhost:3000/api/courses/${this.subjects[t]}/${this.courses[t]}`).subscribe((data:any) => {
+        this.http.get(`http://34.227.122.126:3000/api/courses/${this.subjects[t]}/${this.courses[t]}`).subscribe((data:any) => {
           this.dataBonus.push(data); // add data object to this array
         })
       }
 
-      if (this.dataBonus.length == this.data6.length) // all courses in the schedule are legitimate
-      {
-        this.time = true; // allow this timetable data to be displayed
-      }
-      else // schedule contains fake course(s)
-      {
-        this.data6 = undefined;
-        this.error = `Schedule "${this.name}" contains courses which do not exist, please update schedule with a corrected version!`;
-      }
+      this.time = true; // send signal to display timetable data
     }
     else
     {
