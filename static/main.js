@@ -132,6 +132,7 @@ class MakeSchedulesComponent {
         this.name = "";
         this.count = 0;
         this.build = false;
+        this.clear = true;
         this.subjectCodes = Array(15);
         this.courseCodes = Array(15);
     }
@@ -166,17 +167,26 @@ class MakeSchedulesComponent {
             };
             for (let i = 0; i < this.count; i++) // for the number of courses in the schedule
              {
-                let temp = {
-                    subject_code: this.subjectCodes[i].toUpperCase(),
-                    course_code: this.courseCodes[i].toUpperCase()
-                };
-                obj.classes[i] = temp; // add this subject code + course code pair to the list of classes
+                if (this.val.validate(this.subjectCodes[i], 8) && this.val.validate(this.courseCodes[i], 5)) {
+                    let temp = {
+                        subject_code: this.subjectCodes[i].toUpperCase(),
+                        course_code: this.courseCodes[i].toUpperCase()
+                    };
+                    obj.classes[i] = temp; // add this subject code + course code pair to the list of classes
+                }
+                else {
+                    this.error = `Invalid input for schedule entry: ${this.subjectCodes[i].toUpperCase()}: ${this.courseCodes[i].toUpperCase()}!`;
+                    console.log("Invalid input!");
+                    this.clear = false;
+                }
             }
-            // send request with schedule "obj" in the body and "name" in the URL
-            this.http.post(`/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data) => {
-                this.data4 = data; // get response as string
-            });
-            console.log(`Created schedule with name: ${this.name}`);
+            if (this.clear) {
+                // send request with schedule "obj" in the body and "name" in the URL
+                this.http.post(`/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data) => {
+                    this.data4 = data; // get response as string
+                });
+                console.log(`Created schedule with name: ${this.name}`);
+            }
         }
         else if (this.val.validateNum(this.count, 0, 15)) {
             this.error = "Invalid input in the name field!";
@@ -201,17 +211,26 @@ class MakeSchedulesComponent {
             };
             for (let i = 0; i < this.count; i++) // for the number of courses in the schedule
              {
-                let temp = {
-                    subject_code: this.subjectCodes[i].toUpperCase(),
-                    course_code: this.courseCodes[i].toUpperCase()
-                };
-                obj.classes[i] = temp; // add this subject code + course code pair to the list of classes
+                if (this.val.validate(this.subjectCodes[i], 8) && this.val.validate(this.courseCodes[i], 5)) {
+                    let temp = {
+                        subject_code: this.subjectCodes[i].toUpperCase(),
+                        course_code: this.courseCodes[i].toUpperCase()
+                    };
+                    obj.classes[i] = temp; // add this subject code + course code pair to the list of classes
+                }
+                else {
+                    this.error = `Invalid input for schedule entry: ${this.subjectCodes[i].toUpperCase()}: ${this.courseCodes[i].toUpperCase()}!`;
+                    console.log("Invalid input!");
+                    this.clear = false;
+                }
             }
-            // send request with schedule "obj" in the body and "name" in the URL
-            this.http.put(`/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data) => {
-                this.data4 = data; // get response as string
-            });
-            console.log(`Created schedule with name: ${this.name}`);
+            if (this.clear) {
+                // send request with schedule "obj" in the body and "name" in the URL
+                this.http.put(`/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data) => {
+                    this.data4 = data; // get response as string
+                });
+                console.log(`Created schedule with name: ${this.name}`);
+            }
         }
         else if (this.val.validateNum(this.count, 0, 15)) {
             this.error = "Invalid input in the name field!";
@@ -232,6 +251,7 @@ class MakeSchedulesComponent {
         this.data5 = "";
         this.error = "";
         this.build = false;
+        this.clear = true;
     }
 }
 MakeSchedulesComponent.ɵfac = function MakeSchedulesComponent_Factory(t) { return new (t || MakeSchedulesComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_validator_service__WEBPACK_IMPORTED_MODULE_2__["Validator"])); };

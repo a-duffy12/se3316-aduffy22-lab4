@@ -13,13 +13,14 @@ export class MakeSchedulesComponent implements OnInit {
   name: string = "";
   count: number = 0;
   build: boolean = false;
+  clear: boolean = true;
   subjectCodes: string[] = Array(15);
   courseCodes: string[] = Array(15);
 
   // member variables to hold output
   data4: any;
   data5: any;
-  error: any;
+  error: string;
 
   constructor(private http: HttpClient, private val: Validator) { }
 
@@ -65,19 +66,31 @@ export class MakeSchedulesComponent implements OnInit {
 
       for (let i = 0; i < this.count; i++) // for the number of courses in the schedule
       {
-        let temp: Sclass = { // create empty subject code + course code pair
-          subject_code: this.subjectCodes[i].toUpperCase(),
-          course_code: this.courseCodes[i].toUpperCase()
-        };
+        if (this.val.validate(this.subjectCodes[i], 8) && this.val.validate(this.courseCodes[i], 5))
+        {
+          let temp: Sclass = { // create empty subject code + course code pair
+            subject_code: this.subjectCodes[i].toUpperCase(),
+            course_code: this.courseCodes[i].toUpperCase()
+          };
 
-        obj.classes[i] = temp; // add this subject code + course code pair to the list of classes
+          obj.classes[i] = temp; // add this subject code + course code pair to the list of classes
+        }
+        else
+        {
+          this.error = `Invalid input for schedule entry: ${this.subjectCodes[i].toUpperCase()}: ${this.courseCodes[i].toUpperCase()}!`;
+          console.log("Invalid input!");
+          this.clear = false;
+        }
       }
 
-      // send request with schedule "obj" in the body and "name" in the URL
-      this.http.post(`/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data: string) => {
-        this.data4 = data; // get response as string
-      })
-      console.log(`Created schedule with name: ${this.name}`);
+      if (this.clear)
+      {
+        // send request with schedule "obj" in the body and "name" in the URL
+        this.http.post(`/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data: string) => {
+          this.data4 = data; // get response as string
+        })
+        console.log(`Created schedule with name: ${this.name}`);
+      }
     }
     else if (this.val.validateNum(this.count, 0, 15))
     {
@@ -110,19 +123,31 @@ export class MakeSchedulesComponent implements OnInit {
 
       for (let i = 0; i < this.count; i++) // for the number of courses in the schedule
       {
-        let temp: Sclass = { // create empty subject code + course code pair
-          subject_code: this.subjectCodes[i].toUpperCase(),
-          course_code: this.courseCodes[i].toUpperCase()
-        };
+        if (this.val.validate(this.subjectCodes[i], 8) && this.val.validate(this.courseCodes[i], 5))
+        {
+          let temp: Sclass = { // create empty subject code + course code pair
+            subject_code: this.subjectCodes[i].toUpperCase(),
+            course_code: this.courseCodes[i].toUpperCase()
+          };
 
-        obj.classes[i] = temp; // add this subject code + course code pair to the list of classes
+          obj.classes[i] = temp; // add this subject code + course code pair to the list of classes
+        }
+        else
+        {
+          this.error = `Invalid input for schedule entry: ${this.subjectCodes[i].toUpperCase()}: ${this.courseCodes[i].toUpperCase()}!`;
+          console.log("Invalid input!");
+          this.clear = false;
+        }
       }
 
-      // send request with schedule "obj" in the body and "name" in the URL
-      this.http.put(`/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data: string) => {
-        this.data4 = data; // get response as string
-      })
-      console.log(`Created schedule with name: ${this.name}`);
+      if (this.clear)
+      {
+        // send request with schedule "obj" in the body and "name" in the URL
+        this.http.put(`/api/schedules/${this.name}`, JSON.stringify(obj), reqHeader).subscribe((data: string) => {
+          this.data4 = data; // get response as string
+        })
+        console.log(`Created schedule with name: ${this.name}`);
+      }
     }
     else if (this.val.validateNum(this.count, 0, 15))
     {
@@ -148,6 +173,7 @@ export class MakeSchedulesComponent implements OnInit {
     this.data5 = "";
     this.error = "";
     this.build = false;
+    this.clear = true;
   }
 }
 
